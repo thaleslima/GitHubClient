@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">GitHub</string>
+    <string name="title_no_connection">No connection</string>
+    <string name="title_retry">Retry</string>
+    <string name="error_message">An error has occurred. Please try again by clicking REFRESH</string>
+
+
+    <!--Repository Activity-->
+    <string name="no_movies_message">No repositories</string>
+
+    <!--Pull Activity-->
+    <string name="no_pull_request_message">No pull request</string>
+
+</resources>

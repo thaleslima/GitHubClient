@@ -1,0 +1,84 @@
+apply plugin: 'com.android.application'
+apply from: '../config/quality/quality.gradle'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.thales.github"
+        minSdkVersion 18
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    ext {
+        supportLibraryVersion = '25.2.0'
+        retrofitVersion = '2.0.1'
+        okhttp3Version = '3.1.2'
+        glideVersion = '3.7.0'
+        gsonVersion = '2.6.2'
+        rxVersion = '1.2.1'
+        circleImageVersion = '2.0.0'
+        espressoVersion = '2.2.2'
+        junitVersion = '4.12'
+        mockitoAllVersion = '1.10.19'
+        hamcrestAllVersion = '1.3'
+        supportTestVersion = '0.5'
+        mockitoCoreVersion = '1.10.19'
+        dexmakerVersion = '1.2'
+    }
+
+    compile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    compile "com.android.support:design:$supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
+    compile "com.github.bumptech.glide:glide:$glideVersion"
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "io.reactivex:rxandroid:$rxVersion"
+    compile "io.reactivex:rxjava:$rxVersion"
+    compile "de.hdodenhof:circleimageview:$circleImageVersion"
+
+
+    // Dependencies for local unit tests
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.mockito:mockito-all:$mockitoAllVersion"
+    testCompile "org.hamcrest:hamcrest-all:$hamcrestAllVersion"
+
+    // Android Testing Support Library's runner and rules
+    androidTestCompile "com.android.support.test:runner:$supportTestVersion"
+    androidTestCompile "com.android.support.test:rules:$supportTestVersion"
+
+    // Dependencies for Android unit tests
+    androidTestCompile "junit:junit:$junitVersion"
+    androidTestCompile "org.mockito:mockito-core:$mockitoCoreVersion"
+    androidTestCompile "com.google.dexmaker:dexmaker:$dexmakerVersion"
+    androidTestCompile "com.google.dexmaker:dexmaker-mockito:$dexmakerVersion"
+
+    // Espresso UI Testing
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$espressoVersion"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion", {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    androidTestCompile "com.android.support:support-annotations:$supportLibraryVersion"
+    androidTestCompile "com.android.support:support-v4:$supportLibraryVersion"
+    androidTestCompile "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    androidTestCompile "com.android.support:appcompat-v7:$supportLibraryVersion"
+    androidTestCompile "com.android.support:design:$supportLibraryVersion"
+}
