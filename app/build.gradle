@@ -68,6 +68,8 @@ dependencies {
     androidTestCompile "org.mockito:mockito-core:$mockitoCoreVersion"
     androidTestCompile "com.google.dexmaker:dexmaker:$dexmakerVersion"
     androidTestCompile "com.google.dexmaker:dexmaker-mockito:$dexmakerVersion"
+    androidTestCompile 'com.squareup.retrofit2:retrofit-mock:2.0.1'
+    androidTestCompile ('com.squareup.okhttp:mockwebserver:2.7.0')
 
     // Espresso UI Testing
     androidTestCompile "com.android.support.test.espresso:espresso-contrib:$espressoVersion"
