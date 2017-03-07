@@ -1,4 +1,4 @@
-# GitHubClient-MVP-RXJAVA
+# GitHubClient-Kotlin-MVP-RXJAVA
 
 Summary
 
