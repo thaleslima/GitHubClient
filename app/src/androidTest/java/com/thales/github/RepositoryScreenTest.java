@@ -59,7 +59,7 @@ public class RepositoryScreenTest {
         server = new MockWebServer();
         server.start();
 
-        Constants.GITHUB_API_URL = server.url("/").toString();
+        Constants.INSTANCE.setGITHUB_API_URL(server.url("/").toString());
 
         server.setDispatcher(dispatcher);
 
@@ -68,15 +68,15 @@ public class RepositoryScreenTest {
     }
 
     private void initRepositoryOKHttp() {
-        REPOSITORY_OK_HTTP.name = "okhttp";
-        REPOSITORY_OK_HTTP.forksCount = 4548;
-        REPOSITORY_OK_HTTP.starsCount = 17956;
+        REPOSITORY_OK_HTTP.setName("okhttp");
+        REPOSITORY_OK_HTTP.setForksCount(4548);
+        REPOSITORY_OK_HTTP.setStarsCount(17956);
     }
 
     private void initRepositoryPicasso() {
-        REPOSITORY_PICASSO.name = "picasso";
-        REPOSITORY_PICASSO.forksCount = 3450;
-        REPOSITORY_PICASSO.starsCount = 12798;
+        REPOSITORY_PICASSO.setName("picasso");
+        REPOSITORY_PICASSO.setForksCount(3450);
+        REPOSITORY_PICASSO.setStarsCount(12798);
     }
 
     @Test
@@ -101,15 +101,15 @@ public class RepositoryScreenTest {
 
         onView(withId(R.id.recycler_view))
                 .perform(scrollToPosition(14))
-                .check(matches(atPosition(14, hasDescendant(withText(REPOSITORY_PICASSO.name)))));
+                .check(matches(atPosition(14, hasDescendant(withText(REPOSITORY_PICASSO.getName())))));
 
         onView(withId(R.id.recycler_view))
                 .perform(scrollToPosition(14))
-                .check(matches(atPosition(14, hasDescendant(withText(String.valueOf(REPOSITORY_PICASSO.forksCount))))));
+                .check(matches(atPosition(14, hasDescendant(withText(String.valueOf(REPOSITORY_PICASSO.getForksCount()))))));
 
         onView(withId(R.id.recycler_view))
                 .perform(scrollToPosition(14))
-                .check(matches(atPosition(14, hasDescendant(withText(String.valueOf(REPOSITORY_PICASSO.starsCount))))));
+                .check(matches(atPosition(14, hasDescendant(withText(String.valueOf(REPOSITORY_PICASSO.getStarsCount()))))));
 
         unregisterIdlingResources(resource);
         SystemClock.sleep(1000);
@@ -150,12 +150,12 @@ public class RepositoryScreenTest {
         onView(withId(R.id.recycler_view)).check(matches(isDisplayed()));
         onView(withId(R.id.recycler_view))
                 .perform(RecyclerViewActions.actionOnItem(
-                        hasDescendant(withText(REPOSITORY_PICASSO.name)),
+                        hasDescendant(withText(REPOSITORY_PICASSO.getName())),
                         click()));
         SystemClock.sleep(1000);
         unregisterIdlingResources(resource);
 
-        onView(withText(REPOSITORY_PICASSO.name)).check(matches(withParent(withId(R.id.toolbar))));
+        onView(withText(REPOSITORY_PICASSO.getName())).check(matches(withParent(withId(R.id.toolbar))));
         onView(withId(R.id.recycler_view))
                 .perform(scrollToPosition(14))
                 .check(matches(atPosition(14, hasDescendant(withText("mattprecious")))));

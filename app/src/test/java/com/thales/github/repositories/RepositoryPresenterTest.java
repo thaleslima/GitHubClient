@@ -45,15 +45,15 @@ public class RepositoryPresenterTest {
 
         for (int i = 0; i < 30; i++) {
             Repository repository = new Repository();
-            repository.id = i;
-            repository.name = "name " + i;
-            repository.description = "description" + i;
-            repository.starsCount = i;
-            repository.forksCount = i;
-            repository.owner = new Owner();
-            repository.owner.avatarUrl = "https://avatars.githubusercontent.com/u/6407041?v=3";
-            repository.owner.login = "login" + i;
-            repository.owner.id = i;
+            repository.setId(i);
+            repository.setName("name " + i);
+            repository.setDescription("description" + i);
+            repository.setStarsCount(i);
+            repository.setForksCount(i);
+            repository.setOwner(new Owner());
+            repository.getOwner().setAvatarUrl("https://avatars.githubusercontent.com/u/6407041?v=3");
+            repository.getOwner().setLogin("login" + i);
+            repository.getOwner().setId(i);
 
             REPOSITORIES.add(repository);
         }
@@ -62,7 +62,7 @@ public class RepositoryPresenterTest {
     @Test
     public void loadRepositoriesFromRepositoryAndLoadIntoView() {
         Repositories repo = new Repositories();
-        repo.repositories = REPOSITORIES;
+        repo.setRepositories(REPOSITORIES);
 
         when(tasksRepository.getRepositories("language:Java", "stars", 1)).thenReturn(Observable.just(repo));
 
@@ -76,7 +76,7 @@ public class RepositoryPresenterTest {
     @Test
     public void loadNoRepositoriesFromRepository_ShowsMessage() {
         Repositories repo = new Repositories();
-        repo.repositories = new ArrayList<>();
+        repo.setRepositories(new ArrayList<>());
 
         when(tasksRepository.getRepositories("language:Java", "stars", 1)).thenReturn(Observable.just(repo));
 

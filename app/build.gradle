@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: '../config/quality/quality.gradle'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
@@ -12,6 +14,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -83,4 +86,8 @@ dependencies {
     androidTestCompile "com.android.support:recyclerview-v7:$supportLibraryVersion"
     androidTestCompile "com.android.support:appcompat-v7:$supportLibraryVersion"
     androidTestCompile "com.android.support:design:$supportLibraryVersion"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
